@@ -1,0 +1,25 @@
+# Import packages
+
+import matplotlib.pyplot as plt
+import pandas as pd
+import numpy as np
+from sklearn.linear_model import LinearRegression
+from sklearn.feature_selection import r_regression
+
+# Import data
+sales = pd.read_csv('April.csv')
+
+# Store relevant columns as variables
+X = sales[['Day']].values.reshape(-1, 1)
+y = sales[['Actual']].values.reshape(-1, 1)
+
+# Fit a least squares regression model
+linModel = LinearRegression()
+linModel.fit(X, y)
+yPredicted = linModel.predict(X)
+
+# Graph the model
+plt.scatter(X, y, color='black')
+plt.plot(X, yPredicted, color='blue', linewidth=2)
+plt.xlabel('Latitude', fontsize=14)
+plt.ylabel('Mean length (mm)', fontsize=14)
